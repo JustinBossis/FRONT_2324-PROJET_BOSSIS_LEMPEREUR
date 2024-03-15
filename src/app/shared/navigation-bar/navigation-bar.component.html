@@ -1,1 +1,68 @@
-<p>navigation-bar works!</p>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']"
+        ><img
+          id="MDB-logo"
+          src="/assets/images/logo.svg"
+          draggable="false"
+          height="30"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item">
+            <a class="nav-link mx-2" [routerLink]="['/']"><i class="fas fa-plus-circle pe-2"></i>Evènements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" [routerLink]="['/chat']"><i class="fas fa-bell pe-2"></i>Chat</a>
+          </li>
+        </ul>
+        <div class="dropdown">
+            <a
+              data-mdb-dropdown-init
+              class="dropdown-toggle d-flex align-items-center hidden-arrow nav-link"
+              href="#"
+              data-bs-toggle="dropdown"
+              id="navbarDropdownMenuAvatar"
+              role="button"
+              aria-expanded="false"
+            >
+            
+            <span class="nav-link mx-2">Justin Bossis</span>
+              <img
+                src=""
+                class="rounded-circle"
+                height="25"
+                loading="lazy"
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdownMenuAvatar"
+            >
+              <li>
+                <a class="dropdown-item" href="#">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Settings</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
