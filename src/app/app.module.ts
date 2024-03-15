@@ -4,19 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedComponent } from './shared/shared/shared.component';
 import { EventComponent } from './event/event/event.component';
+import { SharedModule } from './shared/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SharedComponent,
     EventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
