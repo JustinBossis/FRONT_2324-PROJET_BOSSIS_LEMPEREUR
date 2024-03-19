@@ -1,28 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent {
-  user: User = new User(
-    {
-      id: '1',
-      firstname: 'John',
-      lastname: 'Doe',
-      username: 'johndoe',
-      email: 'test@gmail.com',
-      admin: false,
-      favorites: [],
-      birthdate: "01/01/1990",
-      picture: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
-    }
-  );
+export class UserDetailComponent implements OnInit{
+  user: User | null
+
+  constructor(private route: ActivatedRoute){
+    this.user = null
+  }
+
+
+  ngOnInit(): void {
+    this.user = new User(this.route.snapshot.data['userResolved'])
+  }
 
   getFavoritesCount(): number {
-    return this.user.favorites.length;
+    return this.user ? this.user.favorites.length : 0;
   }
 
   viewFavorites(): void {
