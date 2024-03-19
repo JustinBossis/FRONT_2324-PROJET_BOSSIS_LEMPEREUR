@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class UserLoginComponent {
 
+  isLogin: boolean = true;
+
+  constructor() { }
+
+  changeIsLogin(): void {
+    this.isLogin = !this.isLogin;
+  }
+
 }
