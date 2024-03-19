@@ -16,7 +16,7 @@
                             <select required class="form-control" name="theme" #theme="ngModel"
                                 [(ngModel)]="newEvent.theme">
                                 <option value="" disabled selected>Choisir un thème</option>
-                                <option *ngFor="let theme of themes" [value]="theme">{{theme}}</option>
+                                <option *ngFor="let theme of eventService.theme" [value]="theme">{{theme}}</option>
                             </select>
                         </div>
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Event } from 'src/model/event';
 import { EventService } from '../event.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-event-add',
@@ -28,15 +29,19 @@ export class EventAddComponent {
               'assets/images/philo.jpg',
               'assets/images/physique.jpg'];
 
-  themes: string[];
-
   isCreation: boolean = true;
+  eventService: EventService;
 
-  constructor(eventService: EventService){
-    this.themes = eventService.theme;
+  constructor(private router: Router, eventService: EventService){
+    this.eventService = eventService;
   }
 
   onSubmit(form:any) {
+    if(this.isCreation){
+      this.eventService.createEvent(this.newEvent).subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    }
   }
 
   priceVerify(event: any, decimales: number) {

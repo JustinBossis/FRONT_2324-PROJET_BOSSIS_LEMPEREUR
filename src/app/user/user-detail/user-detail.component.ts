@@ -23,8 +23,8 @@ export class UserDetailComponent implements OnInit{
     return this.user ? this.user.favorites.length : 0;
   }
 
-  viewCreates(): void {
-    console.log('viewCreates');
+  viewFavorites(): void {
+    console.log('viewFavorites');
   }
 
   
