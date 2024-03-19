@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="row d-flex justify-content-center align-items-center my-4">
     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
         <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
@@ -7,59 +7,110 @@
                     <div class="row" *ngIf="!isLogin">
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Prénom</label>
-                            <input type="text" class="form-control form-control-lg" required="required" name="firstname" #firstname="ngModel" [(ngModel)]="newUser.firstname" />
+                            <input type="text" minlength="3" maxlength="20" class="form-control form-control-lg"
+                                required="required" name="firstname" #firstname="ngModel"
+                                [(ngModel)]="newUser.firstname" />
+                            <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+                                class="text-danger">
+                                <div *ngIf="firstname.errors?.['required']">Prénom requis</div>
+                                <div *ngIf="firstname.errors?.['minlength']">Le prénom doit comporter au moins 3
+                                    caractères</div>
+                            </div>
                         </div>
 
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Nom</label>
-                            <input type="text" class="form-control form-control-lg" required="required" name="lastname" #lastname="ngModel" [(ngModel)]="newUser.lastname" />
+                            <input type="text" minlength="3" maxlength="20" class="form-control form-control-lg"
+                                required="required" name="lastname" #lastname="ngModel"
+                                [(ngModel)]="newUser.lastname" />
+                            <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="text-danger">
+                                <div *ngIf="lastname.errors?.['required']">Nom requis</div>
+                                <div *ngIf="lastname.errors?.['minlength']">Le nom doit comporter au moins 3
+                                    caractères</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="!isLogin">
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Pseudo</label>
-                            <input type="text" class="form-control form-control-lg" required="required" name="username" #username="ngModel" [(ngModel)]="newUser.username"/>
+                            <input type="text" minlength="3" maxlength="20" class="form-control form-control-lg"
+                                required="required" name="username" #username="ngModel"
+                                [(ngModel)]="newUser.username" />
+                            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-danger">
+                                <div *ngIf="username.errors?.['required']">Pseudonyme requis</div>
+                                <div *ngIf="username.errors?.['minlength']">Le pseudo doit comporter au moins 3
+                                    caractères</div>
+                            </div>
                         </div>
 
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Date de naissance</label>
-                            <input type="date" class="form-control form-control-lg" required="required" name="birthdate" #birthdate="ngModel" [(ngModel)]="newUser.birthdate"/>
+                            <input type="date" class="form-control form-control-lg" required="required" name="birthdate"
+                                #birthdate="ngModel" [(ngModel)]="newUser.birthdate" />
+                            <div *ngIf="birthdate.invalid && (birthdate.dirty || birthdate.touched)"
+                                class="text-danger">
+                                <div *ngIf="birthdate.errors?.['required']">Date de naissance requise</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control form-control-lg" required="required" name="email" #email="ngModel" [(ngModel)]="newUser.email"/>
+                        <input type="email" class="form-control form-control-lg" required="required" name="email"
+                            #email="ngModel" [(ngModel)]="newUser.email"
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" />
+                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                            <div *ngIf="email.errors?.['required']">Email requis</div>
+                            <div *ngIf="email.errors?.['pattern']">Format d'email invalide</div>
+                        </div>
                     </div>
 
                     <div class="row">
                         <div class="form-outline col-md-6 mb-4" *ngIf="!isLogin">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-lg" required="required" name="password" #password="ngModel" [(ngModel)]="passwordValue"/>
+                            <label class="form-label">Mot de passe</label>
+                            <input type="password" minlength="4" class="form-control form-control-lg"
+                                required="required" name="password" #password="ngModel" [(ngModel)]="passwordValue" />
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                                <div *ngIf="password.errors?.['required']">Mot de passe requis</div>
+                                <div *ngIf="password.errors?.['minlength']">Le mot de passe doit comporter au moins 4
+                                    caractères</div>
+                            </div>
                         </div>
                         <div class="form-outline mb-4" *ngIf="isLogin">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-lg" required="required" name="password" #password="ngModel" [(ngModel)]="passwordValue"/>
+                            <label class="form-label">Mot de passe</label>
+                            <input type="password" minlength="4" class="form-control form-control-lg"
+                                required="required" name="password" #password="ngModel" [(ngModel)]="passwordValue" />
+                            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                                <div *ngIf="password.errors?.['required']">Mot de passe requis</div>
+                            </div>
                         </div>
 
                         <div class="form-outline col-md-6 mb-4" *ngIf="!isLogin">
                             <label class="form-label">Repeat your password</label>
-                            <input type="password" class="form-control form-control-lg" required="required" name="checkPassword"/>
+                            <input type="password" minlength="4" class="form-control form-control-lg"
+                                required="required" name="checkPassword" #checkPassword="ngModel" [(ngModel)]="checkPasswordValue" />
+                            <div *ngIf="!checkPasswordsMatch()" class="text-danger">
+                                Les mots de passe ne correspondent pas
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4" *ngIf="!isLogin">
                         <label class="form-label">Photo de profil</label>
-                        <input type="file" class="form-control form-control-lg" name="fileUpload" (change)="loadFile($event)" required="required">
+                        <input type="file" class="form-control form-control-lg" name="fileUpload"
+                            (change)="loadFile($event)" required="required">
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-success">{{ !isLogin ? "S'inscrire" : 'Se connecter' }}</button>
+                        <button type="submit" [disabled]="registerForm.pristine || registerForm.invalid || !checkPasswordsMatch()" type="submit"
+                            class="btn btn-success">{{ !isLogin ? "S'inscrire" : "Se connecter"}}</button>
                     </div>
 
-                    <p class="text-center text-muted mt-5 mb-0">{{ !isLogin ? "Vous avez déjà un compte ?" : "Vous n'avez pas de compte ?" }}
-                        <button (click)="changeIsLogin()" type="button" class="btn btn-secondary">{{ !isLogin ? "Se connecter" : "S'inscrire" }}</button>
+                    <p class="text-center text-muted mt-5 mb-0">{{ !isLogin ? "Vous avez déjà un compte ?" : "Vous
+                        n'avez pas de compte ?" }}
+                        <button (click)="changeIsLogin()" type="button" class="btn btn-secondary">{{ !isLogin ? "Se
+                            connecter" : "S'inscrire" }}</button>
                     </p>
 
                 </form>

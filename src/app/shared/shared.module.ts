@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
-    NavigationBarComponent
+    NavigationBarComponent,
+    FooterComponent
   ],
   imports: [
     FormsModule,
@@ -21,6 +23,7 @@ import { AppRoutingModule } from '../app-routing.module';
     CommonModule,
     NavigationBarComponent,
     HttpClientModule,
+    FooterComponent
   ]
 })
 export class SharedModule { }

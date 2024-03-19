@@ -23,6 +23,7 @@ export class UserLoginComponent {
     }
   );
   passwordValue: string = ""
+  checkPasswordValue: string = ""
   isLogin: boolean = true;
   userService: UserService
   pictureFile: File | undefined;
@@ -59,5 +60,9 @@ export class UserLoginComponent {
     if(event.target){
       this.pictureFile = event.target.files[0];
     }
+  }
+
+  checkPasswordsMatch(): boolean {
+    return this.passwordValue === this.checkPasswordValue;
   }
 }
