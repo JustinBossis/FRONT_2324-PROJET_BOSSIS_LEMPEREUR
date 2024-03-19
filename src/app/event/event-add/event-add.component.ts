@@ -20,14 +20,7 @@ export class EventAddComponent {
       creator: ''
     }
   );
-
-  imageUrls = ['assets/images/maths.jpg',
-              'assets/images/sport.jpg',
-              'assets/images/chimie.jpg',
-              'assets/images/histoire.jpg',
-              'assets/images/info.jpg',
-              'assets/images/philo.jpg',
-              'assets/images/physique.jpg'];
+  pictureFile: File | undefined;
 
   isCreation: boolean = true;
   eventService: EventService;
@@ -37,8 +30,8 @@ export class EventAddComponent {
   }
 
   onSubmit(form:any) {
-    if(this.isCreation){
-      this.eventService.createEvent(this.newEvent).subscribe(() => {
+    if(this.isCreation && this.pictureFile){
+      this.eventService.createEvent(this.newEvent, this.pictureFile).subscribe(() => {
         this.router.navigate(['/']);
       });
     }
@@ -49,6 +42,11 @@ export class EventAddComponent {
     let decimalesActuelles = value.split('.')[1];
     if (decimalesActuelles && decimalesActuelles.length > decimales) {
       event.target.value = value.slice(0, -(decimalesActuelles.length - decimales));
+    }
+  }
+  loadFile(event: any) {
+    if(event.target){
+      this.pictureFile = event.target.files[0];
     }
   }
 }

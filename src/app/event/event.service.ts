@@ -12,12 +12,18 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  createEvent(data: any, ): Observable<any | undefined>{
+  createEvent(data: any, pictureFile: File): Observable<any | undefined>{
     let auth_token = localStorage.getItem("token")
+
+    const formData = new FormData();
+    formData.append("pictureFile", pictureFile);
+    for(let key in data){
+      formData.append(key, data[key])
+    }
+
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', data, { headers: headers });
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', formData, { headers: headers });
   }
 }

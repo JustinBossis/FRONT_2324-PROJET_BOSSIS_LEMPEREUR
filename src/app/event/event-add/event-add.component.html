@@ -30,11 +30,8 @@
                     <div class="row">
                         <div class="form-outline col-md-8 mb-4">
                             <label class="form-label">Photo</label>
-                            <select required class="form-control" name="picture" #picture="ngModel"
-                                [(ngModel)]="newEvent.picture">
-                                <option value="" disabled selected>Choisir une photo</option>
-                                <option *ngFor="let item of imageUrls" [value]="item">{{item}}</option>
-                            </select>
+                            <input *ngIf="isCreation" type="file" class="form-control" name="fileUpload" (change)="loadFile($event)" required="required">
+                            <input *ngIf="!isCreation" type="text" disabled class="form-control" name="picture" #picture="ngModel" [(ngModel)]="newEvent.picture">
                         </div>
                         <div class="form-outline col-md-4 mb-4">
                             <label class="form-label">Prix (€)</label>
