@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { User } from '../../model/user';
+import { UserService } from '../user.service';
+import { User } from 'src/model/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -20,16 +22,29 @@ export class UserLoginComponent {
       picture: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
     }
   );
+  passwordValue: string = ""
   isLogin: boolean = true;
+  userService: UserService
 
-  constructor() { }
+  constructor(private router: Router, private userServ: UserService) {
+    this.userService = userServ
+  }
 
   changeIsLogin(): void {
     this.isLogin = !this.isLogin;
   }
 
-  onSubmit(registerForm:any): void {
-    console.log(this.newUser);
+  onSubmit(form:any) {
+    if(this.isLogin){
+      this.userService.loginUser(this.newUser.email, this.passwordValue).subscribe(tokens => {
+        this.passwordValue = ""
+        if(tokens){
+          localStorage.setItem("token", tokens.token);
+          localStorage.setItem("refreshtoken", tokens.refreshToken);
+          this.router.navigate(['/']);
+        }
+      })
+    }
   }
 
 }

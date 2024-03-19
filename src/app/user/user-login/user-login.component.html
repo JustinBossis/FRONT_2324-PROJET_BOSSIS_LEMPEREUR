@@ -8,56 +8,56 @@
                     <div class="row" *ngIf="!isLogin">
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Prénom</label>
-                            <input type="text" class="form-control form-control-lg" #firstname="ngModel" [(ngModel)]="newUser.firstname" />
+                            <input type="text" class="form-control form-control-lg" name="firstname" #firstname="ngModel" [(ngModel)]="newUser.firstname" />
                         </div>
 
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Nom</label>
-                            <input type="text" class="form-control form-control-lg" #lastname="ngModel" [(ngModel)]="newUser.lastname" />
+                            <input type="text" class="form-control form-control-lg" name="lastname" #lastname="ngModel" [(ngModel)]="newUser.lastname" />
                         </div>
                     </div>
 
                     <div class="row" *ngIf="!isLogin">
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Pseudo</label>
-                            <input type="text" class="form-control form-control-lg" #username="ngModel" [(ngModel)]="newUser.username"/>
+                            <input type="text" class="form-control form-control-lg" name="username" #username="ngModel" [(ngModel)]="newUser.username"/>
                         </div>
 
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Date de naissance</label>
-                            <input type="date" class="form-control form-control-lg" #birthdate="ngModel" [(ngModel)]="newUser.birthdate"/>
+                            <input type="date" class="form-control form-control-lg" name="birthdate" #birthdate="ngModel" [(ngModel)]="newUser.birthdate"/>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control form-control-lg" #email="ngModel" [(ngModel)]="newUser.email"/>
+                        <input type="email" class="form-control form-control-lg" name="email" #email="ngModel" [(ngModel)]="newUser.email"/>
                     </div>
 
                     <div class="row">
                         <div class="form-outline col-md-6 mb-4" *ngIf="!isLogin">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-lg" #password="ngModel" [(ngModel)]="newUser.password"/>
+                            <input type="password" class="form-control form-control-lg" name="password" #password="ngModel" [(ngModel)]="passwordValue"/>
                         </div>
                         <div class="form-outline mb-4" *ngIf="isLogin">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control form-control-lg" #password="ngModel" [(ngModel)]="newUser.password"/>
+                            <input type="password" class="form-control form-control-lg" name="password" #password="ngModel" [(ngModel)]="passwordValue"/>
                         </div>
 
                         <div class="form-outline col-md-6 mb-4" *ngIf="!isLogin">
                             <label class="form-label">Repeat your password</label>
-                            <input type="password" class="form-control form-control-lg" />
+                            <input type="password" class="form-control form-control-lg" name="checkPassword"/>
                         </div>
                     </div>
 
                     <div class="form-outline mb-4" *ngIf="!isLogin">
                         <label class="form-label">Photo de profil</label>
-                        <input type="text" class="form-control form-control-lg" #picture="ngModel" [(ngModel)]="newUser.picture"/>
+                        <input type="text" class="form-control form-control-lg" name="picture" #picture="ngModel" [(ngModel)]="newUser.picture"/>
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="button" class="btn btn-success" *ngIf="!isLogin">S'inscrire</button>
-                        <button type="button" class="btn btn-success" *ngIf="isLogin">Se connecter</button>
+                        <button type="submit" class="btn btn-success" *ngIf="!isLogin">S'inscrire</button>
+                        <button type="submit" class="btn btn-success" *ngIf="isLogin">Se connecter</button>
                     </div>
 
                     <p class="text-center text-muted mt-5 mb-0" *ngIf="!isLogin">Vous avez déjà un compte ?
