@@ -11,20 +11,21 @@ import { Router } from '@angular/router';
 export class UserLoginComponent {
   newUser: User = new User(
     {
-      id: '1',
-      firstname: 'John',
-      lastname: 'Doe',
-      username: 'johndoe',
-      email: 'test@gmail.com',
+      id: '',
+      firstname: '',
+      lastname: '',
+      username: '',
+      email: '',
       admin: false,
       favorites: [],
-      birthdate: "01/01/1990",
-      picture: "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp",
+      birthdate: "",
+      picture: "",
     }
   );
   passwordValue: string = ""
   isLogin: boolean = true;
   userService: UserService
+  pictureFile: File | undefined;
 
   constructor(private router: Router, private userServ: UserService) {
     this.userService = userServ
@@ -34,17 +35,29 @@ export class UserLoginComponent {
     this.isLogin = !this.isLogin;
   }
 
-  onSubmit(form:any) {
-    if(this.isLogin){
+  onSubmit(form: any) {
+    if (this.isLogin) {
       this.userService.loginUser(this.newUser.email, this.passwordValue).subscribe(tokens => {
         this.passwordValue = ""
-        if(tokens){
+        if (tokens) {
           localStorage.setItem("token", tokens.token);
           localStorage.setItem("refreshtoken", tokens.refreshToken);
           this.router.navigate(['/']);
         }
       })
+    } else {
+      if (this.pictureFile) {
+        this.userService.createUser(this.newUser, this.passwordValue, this.pictureFile).subscribe(id => {
+          this.passwordValue = "";
+          this.isLogin = true;
+        });
+      }
     }
   }
 
+  loadFile(event: any) {
+    if(event.target){
+      this.pictureFile = event.target.files[0];
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light navbar-light">
+<nav class="navbar navbar-expand-lg bg-light navbar-light" *ngIf="userService.user">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']"><img src="/assets/images/logo.svg" draggable="false" height="30" /></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -17,7 +17,7 @@
           <a class="dropdown-toggle d-flex align-items-center hidden-arrow nav-link" href="#" data-bs-toggle="dropdown"
             id="navbarDropdownMenuAvatar" role="button" aria-expanded="false">
 
-            <span class="nav-link mx-2">{{decoded_token["firstname"]}} {{decoded_token["lastname"]}}</span>
+            <span class="nav-link mx-2">{{userService.user.displayName()}}</span>
             <img src="" class="rounded-circle" height="25" loading="lazy" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -25,7 +25,7 @@
               <a class="dropdown-item" [routerLink]="['/user']">Mon profil</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Déconnexion</a>
+              <a class="dropdown-item" (click)="disconnectUser()">Déconnexion</a>
             </li>
           </ul>
         </div>

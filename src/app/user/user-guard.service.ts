@@ -4,6 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
 import { UserService } from './user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { User } from 'src/model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,8 @@ export class UserGuardService {
             });
             return throwError(() => new Error('User not logged'));
           })
-        ).subscribe(() => {
+        ).subscribe((user) => {
+          this.userService.user = new User(user)
           observer.next(true);
           observer.complete();
         });

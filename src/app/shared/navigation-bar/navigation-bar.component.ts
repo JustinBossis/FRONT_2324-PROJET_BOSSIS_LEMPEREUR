@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { jwtDecode } from "jwt-decode";
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -9,16 +11,18 @@ import { jwtDecode } from "jwt-decode";
 })
 export class NavigationBarComponent {
 
-  decoded_token: { [key: string]: string }
+  userService: UserService
 
-  constructor(){
+  constructor(private router: Router, private userServ: UserService){
+    this.userService = userServ;
 
-    const token = localStorage.getItem("token")
-    if(token){
-      this.decoded_token = jwtDecode(token)
-    }else{
-      this.decoded_token = {}
-    }
+  }
+
+  disconnectUser(){
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshtoken");
+    this.userService.user = null;
+    this.router.navigate(['user', 'login']);
   }
   
 

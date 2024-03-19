@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { SharedModule } from '../shared/shared.module';
