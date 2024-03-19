@@ -9,6 +9,7 @@
                             <img [src]="user.picture"
                                 alt="Avatar" class="img-fluid my-5" style="width: 150px;" />
                             <h5>{{ user.username }}</h5>
+                            <h5>{{ user.admin ? 'Administrateur' : 'Utilisateur' }}</h5>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body p-4">
@@ -38,7 +39,7 @@
                                         <h6>Nombre de favoris : {{getFavoritesCount()}}</h6>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <button class="card border-1" style="background-color: #cfd6fa;" (click)="viewFavorites()">
+                                        <button class="card border-1" style="background-color: #cfd6fa;" (click)="viewCreates()">
                                             <div class="card-body p-0">
                                                 <h6 class="card-title">Consulter la liste de favoris</h6>
                                             </div>

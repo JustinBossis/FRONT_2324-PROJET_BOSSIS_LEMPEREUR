@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../model/user';
+import { User } from 'src/model/user';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -23,8 +23,8 @@ export class UserDetailComponent implements OnInit{
     return this.user ? this.user.favorites.length : 0;
   }
 
-  viewFavorites(): void {
-    console.log('viewFavorites');
+  viewCreates(): void {
+    console.log('viewCreates');
   }
 
   

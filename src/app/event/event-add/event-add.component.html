@@ -1,0 +1,55 @@
+<div class="row d-flex justify-content-center align-items-center mt-4">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-5">{{ isCreation ? 'Ajouter' : 'Modifier' }} un évènement </h2>
+                <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)">
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Nom</label>
+                        <input required minlength="5" maxlength="25" type="text" class="form-control form-control-lg"
+                            name="name" #name="ngModel" [(ngModel)]="newEvent.name" placeholder="Entrez le nom de l'événement" />
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline col-md-6 mb-4">
+                            <label class="form-label">Thème</label>
+                            <select required class="form-control" name="theme" #theme="ngModel"
+                                [(ngModel)]="newEvent.theme">
+                                <option value="" disabled selected>Choisir un thème</option>
+                                <option *ngFor="let theme of themes" [value]="theme">{{theme}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-outline col-md-6 mb-4">
+                            <label class="form-label">Date</label>
+                            <input required type="date" name="date" class="form-control" #date="ngModel"
+                                [(ngModel)]="newEvent.date" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-outline col-md-8 mb-4">
+                            <label class="form-label">Photo</label>
+                            <select required class="form-control" name="picture" #picture="ngModel"
+                                [(ngModel)]="newEvent.picture">
+                                <option value="" disabled selected>Choisir une photo</option>
+                                <option *ngFor="let item of imageUrls" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="form-outline col-md-4 mb-4">
+                            <label class="form-label">Prix (€)</label>
+                            <input required type="number" min="0" class="form-control" name="price" #price="ngModel"
+                                (input)="priceVerify($event, 2)" [(ngModel)]="newEvent.price" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button [disabled]="eventForm.pristine || eventForm.invalid" type="submit"
+                            class="btn btn-success">{{ isCreation ? 'Créer' : 'Modifier' }}</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

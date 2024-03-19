@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class EventService {
 
+  theme = ['Sport', 'Culture', 'Festif', 'Pro', 'Autres']
+
   constructor() { }
 }

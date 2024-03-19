@@ -4,13 +4,15 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { EventRoutingModule } from './event-routing.module';
+import { EventAddComponent } from './event-add/event-add.component';
 
 
 
 @NgModule({
   declarations: [
     EventDetailComponent,
-    EventListComponent
+    EventListComponent,
+    EventAddComponent
   ],
   imports: [
     CommonModule,
