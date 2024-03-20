@@ -23,11 +23,13 @@ export class EventService {
     let auth_token = localStorage.getItem("token")
 
     data.picture = this.theme_pictures[data.theme];
+    delete data._id;
+    delete data.favorite_by;
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', data, { headers: headers });
+    return this.http.post<any>('http://localhost:3000/events/', data, { headers: headers });
   }
 
   getEvents(filters: any[] = [], sort: any = {date: 1}): Observable<IEvent[] | undefined>{
@@ -39,7 +41,7 @@ export class EventService {
       filter: JSON.stringify(filters),
       sort: JSON.stringify(sort)
     }
-    return this.http.get<IEvent[]>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', { headers: headers, params: params});
+    return this.http.get<IEvent[]>('http://localhost:3000/events/', { headers: headers, params: params});
   }
 
   getCreatedEvents(userId: string): Observable<IEvent[] | undefined> {
@@ -47,7 +49,7 @@ export class EventService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IEvent[]>(`https://back-2324-projet-bossis-lempereur.onrender.com/events/user/${userId}`, { headers: headers});
+    return this.http.get<IEvent[]>(`http://localhost:3000/events/user/${userId}`, { headers: headers});
   }
 
   getEvent(id: string): Observable<IEvent | undefined>{
@@ -55,7 +57,7 @@ export class EventService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IEvent>(`https://back-2324-projet-bossis-lempereur.onrender.com/events/${id}`, { headers: headers });
+    return this.http.get<IEvent>(`http://localhost:3000/events/${id}`, { headers: headers });
   }
 
   addFavoriteEvent(idEvent: string): Observable<any | undefined>{
@@ -63,7 +65,7 @@ export class EventService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/addFavoriteEvent', {idEvent: idEvent}, { headers: headers});
+    return this.http.post<any>('http://localhost:3000/auth/addFavoriteEvent', {idEvent: idEvent}, { headers: headers});
   }
 
   removeFavoriteEvent(idEvent: string): Observable<any | undefined>{
@@ -71,6 +73,19 @@ export class EventService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/removeFavoriteEvent', {idEvent: idEvent}, { headers: headers});
+    return this.http.post<any>('http://localhost:3000/auth/removeFavoriteEvent', {idEvent: idEvent}, { headers: headers});
+  }
+
+  updateEvent(idEvent:string, data: any): Observable<any | undefined>{
+    let auth_token = localStorage.getItem("token")
+
+    data.picture = this.theme_pictures[data.theme];
+    delete data._id;
+    delete data.favorite_by;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.http.put<any>(`http://localhost:3000/events/${idEvent}`, data, { headers: headers });
   }
 }

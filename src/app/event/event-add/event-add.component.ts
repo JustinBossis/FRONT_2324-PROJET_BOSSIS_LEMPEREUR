@@ -17,7 +17,8 @@ export class EventAddComponent implements OnInit{
       price: 0,
       date: '',
       theme: '',
-      creator: ''
+      creator: '',
+      favorite_by: []
     }
   );
 
@@ -38,6 +39,10 @@ export class EventAddComponent implements OnInit{
   onSubmit(form:any) {
     if(this.isCreation){
       this.eventService.createEvent(this.newEvent).subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    } else {
+      this.eventService.updateEvent(this.newEvent._id,this.newEvent).subscribe(() => {
         this.router.navigate(['/']);
       });
     }

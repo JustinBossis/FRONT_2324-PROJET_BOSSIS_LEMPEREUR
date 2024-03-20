@@ -44,6 +44,9 @@ export class EventDetailComponent implements OnInit{
     if (this.event) {
       this.eventService.addFavoriteEvent(this.event._id).subscribe();
       this.inFavorite = true;
+      if(this.userService.user){
+        this.event.favorite_by.push(this.userService.user);
+      }
     }
   }
 
@@ -51,13 +54,14 @@ export class EventDetailComponent implements OnInit{
     if (this.event) {
       this.eventService.removeFavoriteEvent(this.event._id).subscribe();
       this.inFavorite = false;
+      if(this.userService.user){
+        //this.event.favorite_by = this.event.favorite_by.filter(utilisateur => utilisateur._id != this.userService.user._id);
+      }
     }
   }
 
   modifyEvent(): void{
-    console.log('Modify event');
     this.router.navigateByUrl("/event/modify", { state: { event: this.event } });
   }
-  
 
 }

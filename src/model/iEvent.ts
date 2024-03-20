@@ -1,3 +1,5 @@
+import { IUser } from "./iUser";
+
 export interface IEvent  {
     _id: string;
     name: string;
@@ -6,4 +8,5 @@ export interface IEvent  {
     date: string;
     theme: string;
     creator: string;
+    favorite_by: IUser[] | null;
 }
