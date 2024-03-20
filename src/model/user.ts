@@ -1,7 +1,7 @@
 import { IUser } from "./iUser";
 
 export class User implements IUser{
-    id: string;
+    _id: string;
     firstname: string;
     lastname: string;
     username: string;
@@ -12,7 +12,7 @@ export class User implements IUser{
     picture: string;
 
     constructor(data: any){
-        this.id = data.id;
+        this._id = data._id;
         this.firstname = data.firstname;
         this.lastname = data.lastname;
         this.username = data.username;

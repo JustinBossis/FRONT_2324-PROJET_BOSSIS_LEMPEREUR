@@ -9,22 +9,25 @@ import { IEvent } from 'src/model/iEvent';
 export class EventService {
 
   theme = ['Sport', 'Culture', 'Festif', 'Pro', 'Autres']
+  theme_pictures: any = {
+    'Sport': "/assets/images/events/sport.jpg",
+    'Culture': "/assets/images/events/culture.jpg",
+    'Festif': "/assets/images/events/festif.jpg",
+    'Pro': "/assets/images/events/pro.jpg",
+    'Autres': "/assets/images/events/autres.jpg",
+  }
 
   constructor(private http: HttpClient) { }
 
-  createEvent(data: any, pictureFile: File): Observable<any | undefined>{
+  createEvent(data: any): Observable<any | undefined>{
     let auth_token = localStorage.getItem("token")
 
-    const formData = new FormData();
-    formData.append("pictureFile", pictureFile);
-    for(let key in data){
-      formData.append(key, data[key])
-    }
+    data.picture = this.theme_pictures[data.theme];
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', formData, { headers: headers });
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', data, { headers: headers });
   }
 
   getEvents(filters: any[] = [], sort: any = {date: 1}): Observable<IEvent[] | undefined>{

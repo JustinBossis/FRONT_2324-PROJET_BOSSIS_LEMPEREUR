@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class UserLoginComponent {
   newUser: User = new User(
     {
-      id: '',
+      _id: '',
       firstname: '',
       lastname: '',
       username: '',
@@ -26,7 +26,6 @@ export class UserLoginComponent {
   checkPasswordValue: string = ""
   isLogin: boolean = true;
   userService: UserService
-  pictureFile: File | undefined;
 
   constructor(private router: Router, private userServ: UserService) {
     this.userService = userServ
@@ -47,22 +46,29 @@ export class UserLoginComponent {
         }
       })
     } else {
-      if (this.pictureFile) {
-        this.userService.createUser(this.newUser, this.passwordValue, this.pictureFile).subscribe(id => {
-          this.passwordValue = "";
-          this.isLogin = true;
-        });
-      }
-    }
-  }
-
-  loadFile(event: any) {
-    if(event.target){
-      this.pictureFile = event.target.files[0];
+      this.userService.createUser(this.newUser, this.passwordValue).subscribe(id => {
+        this.passwordValue = "";
+        this.isLogin = true;
+      });
     }
   }
 
   checkPasswordsMatch(): boolean {
     return this.passwordValue === this.checkPasswordValue;
+  }
+
+  changeImageURL(event: Event, nb: number) {
+    let images = document.getElementsByClassName("formImageChoice")
+    for(let i = 0; i < images.length; i++){
+      if(i == nb){
+        if(images[i].classList.contains("disabledImage")){
+          images[i].classList.remove("disabledImage");
+        }
+      }else{
+        if(!images[i].classList.contains("disabledImage")){
+          images[i].classList.add("disabledImage");
+        }
+      }
+    }
   }
 }

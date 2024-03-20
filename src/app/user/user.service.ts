@@ -10,6 +10,15 @@ import { User } from 'src/model/user';
 export class UserService {
 
   user: User | null = null
+  
+  avatars = [
+    '/assets/images/users/avatar_1.png',
+    '/assets/images/users/avatar_2.png',
+    '/assets/images/users/avatar_3.png',
+    '/assets/images/users/avatar_4.png',
+    '/assets/images/users/avatar_5.png',
+    '/assets/images/users/avatar_6.png',
+  ]
 
   constructor(private http: HttpClient) { }
 
@@ -20,16 +29,11 @@ export class UserService {
     return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/connect', {email: email, password: password}, { headers: headers });
   }
 
-  createUser(data: any, password: string, pictureFile: File): Observable<any | undefined>{
-    delete data.id;
+  createUser(data: any, password: string): Observable<any | undefined>{
+    delete data._id;
     data.password = password;
-    const formData = new FormData();
-    formData.append("pictureFile", pictureFile);
-    for(let key in data){
-      formData.append(key, data[key])
-    }
 
-    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/', formData);
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/', data);
   }
 
   getUser(id: String): Observable<IUser | undefined>{
