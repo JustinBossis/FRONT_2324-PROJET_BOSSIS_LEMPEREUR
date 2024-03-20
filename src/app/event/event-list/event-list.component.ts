@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/model/event';
 import { EventService } from '../event.service';
 import { filter, map } from 'rxjs';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-event-list',
@@ -11,10 +12,12 @@ import { filter, map } from 'rxjs';
 export class EventListComponent implements OnInit{
 
   events: Event[] = [];
-  eventService: EventService
+  eventService: EventService;
+  userService: UserService;
 
-  constructor(private eventServ: EventService){
-    this.eventService = eventServ
+  constructor(private eventServ: EventService, private userServ: UserService){
+    this.eventService = eventServ;
+    this.userService = userServ;
   }
 
   ngOnInit(): void {

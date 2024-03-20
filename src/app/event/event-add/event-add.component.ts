@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/model/event';
 import { EventService } from '../event.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './event-add.component.html',
   styleUrls: ['./event-add.component.css']
 })
-export class EventAddComponent {
+export class EventAddComponent implements OnInit{
   newEvent: Event = new Event(
     {
       _id: '1',
@@ -26,6 +26,13 @@ export class EventAddComponent {
 
   constructor(private router: Router, eventService: EventService){
     this.eventService = eventService;
+  }
+
+  ngOnInit(): void {
+    if (history.state.event) {
+      this.newEvent = new Event(history.state.event);
+      this.isCreation = false;
+    }
   }
 
   onSubmit(form:any) {

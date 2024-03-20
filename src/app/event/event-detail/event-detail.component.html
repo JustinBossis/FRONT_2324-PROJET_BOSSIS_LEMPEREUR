@@ -1,0 +1,38 @@
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col col-lg-6 mb-4 mb-lg-0">
+            <div class="row g-0">
+                <div class="gradient-custom text-center text-black"
+                    style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;" *ngIf="event">
+                    <h2>{{event.name}}</h2>
+                    <hr class="mt-0 mb-4">
+                    <div class="d-flex justify-content-center mb-3">
+                        <button class="btn btn-secondary m-2" *ngIf="!inFavorite" (click)="addToFavorites()">Ajouter aux favoris</button>
+                        <button class="btn btn-secondary m-2" *ngIf="inFavorite" (click)="removeToFavorites()">Retirer des favoris</button>
+                        <button class="btn btn-secondary m-2" (click)='modifyEvent()' *ngIf="isCreator">Modifier l'évènement</button>
+                    </div>
+                    <hr class="mt-0 mb-4">
+                    <div class="row pt-1">
+                        <div class="col-6 mb-3">
+                            <h6>Thème : <span class="text-muted">{{event.theme}}</span></h6>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h6>Prix : <span class="text-muted">{{event.price}}€</span></h6>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <h6>Date : <span class="text-muted">{{event.date}}</span></h6>
+                        </div>
+
+                    </div>
+                </div>
+
+                    <h6>Utilisateurs ayant mis en favoris l'évènement :</h6>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">nom 1</a>
+                        <a href="#" class="list-group-item list-group-item-action">nom 2</a>
+                        <a href="#" class="list-group-item list-group-item-action">nom 3</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button [disabled]="eventForm.pristine || eventForm.invalid" type="submit"
+                        <button [disabled]="eventForm.invalid" type="submit"
                             class="btn btn-success">{{ isCreation ? 'Créer' : 'Modifier' }}</button>
                     </div>
                 </form>

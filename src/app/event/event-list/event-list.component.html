@@ -1,6 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8 row row-cols-1 g-4">
+            <h5 *ngIf="userService.user">Bienvenue {{userService.user.displayName()}} !</h5>
             <app-event-filter (filterUpdated)="updateList($event)"></app-event-filter>
             <div class="col" *ngFor="let event of events">
                 <div class="card h-100">
