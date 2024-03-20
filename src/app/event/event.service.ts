@@ -41,4 +41,12 @@ export class EventService {
     }
     return this.http.get<IEvent[]>('https://back-2324-projet-bossis-lempereur.onrender.com/events/', { headers: headers, params: params});
   }
+
+  getCreatedEvents(userId: string): Observable<IEvent[] | undefined> {
+    let auth_token = localStorage.getItem("token")
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.http.get<IEvent[]>(`https://back-2324-projet-bossis-lempereur.onrender.com/events/user/${userId}`, { headers: headers});
+  }
 }
