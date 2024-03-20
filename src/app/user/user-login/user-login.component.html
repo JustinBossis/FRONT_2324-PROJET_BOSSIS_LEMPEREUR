@@ -103,14 +103,14 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button type="submit" [disabled]="registerForm.pristine || registerForm.invalid || !checkPasswordsMatch()" type="submit"
-                            class="btn btn-success">{{ !isLogin ? "S'inscrire" : "Se connecter"}}</button>
+                        <button *ngIf="!isLogin" type="submit" [disabled]="registerForm.pristine || registerForm.invalid || !checkPasswordsMatch()" type="submit"
+                            class="btn btn-success">S'inscrire</button>
+                        <button *ngIf="isLogin" type="submit" [disabled]="!isLogin" type="submit"
+                            class="btn btn-success">Se connecter</button>
                     </div>
 
-                    <p class="text-center text-muted mt-5 mb-0">{{ !isLogin ? "Vous avez déjà un compte ?" : "Vous
-                        n'avez pas de compte ?" }}
-                        <button (click)="changeIsLogin()" type="button" class="btn btn-secondary">{{ !isLogin ? "Se
-                            connecter" : "S'inscrire" }}</button>
+                    <p class="text-center text-muted mt-5 mb-0">{{ !isLogin ? "Vous avez déjà un compte ?" : "Vous n'avez pas de compte ?" }}
+                        <button (click)="changeIsLogin()" type="button" class="btn btn-secondary">{{ !isLogin ? "Se connecter" : "S'inscrire" }}</button>
                     </p>
 
                 </form>

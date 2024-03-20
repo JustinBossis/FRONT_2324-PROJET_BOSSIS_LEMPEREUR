@@ -1,7 +1,7 @@
 import { IEvent } from "./iEvent";
 
 export class Event implements IEvent{
-    id: string;
+    _id: string;
     name: string;
     picture: string;
     price: number;
@@ -10,7 +10,7 @@ export class Event implements IEvent{
     creator: string;
 
     constructor(data: any){
-        this.id = data.id;
+        this._id = data._id;
         this.name = data.name;
         this.picture = data.picture;
         this.price = data.price;

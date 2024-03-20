@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-body">
+    <form class="row row-cols-lg-auto g-3 align-items-center">
+      <div class="col-12">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Nom de l'évènement" (input)="updateFilter()"
+            name="search" #search="ngModel" [(ngModel)]="searchField">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="input-group">
+          <input type="number" class="form-control" placeholder="Prix" (input)="updateFilter()" name="price"
+            #price="ngModel" [(ngModel)]="priceField">
+        </div>
+      </div>
+
+      <div class="col-12">
+        <select class="form-select" name="theme" (change)="updateFilter()" #theme="ngModel" [(ngModel)]="themeField">
+          <option selected value="">Thème</option>
+          <option *ngFor="let theme of eventService.theme" value="{{theme}}">{{theme}}</option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <select class="form-select" (change)="updateFilter()" name="sort" #sort="ngModel" [(ngModel)]="sortField">
+          <option selected value="{}">Tri</option>
+          <option value='{"date":1}'>Date croissante</option>
+          <option value='{"date":-1}'>Date décroissante</option>
+          <option value='{"price":1}'>Prix croissant</option>
+          <option value='{"price":-1}'>Prix décroissant</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>

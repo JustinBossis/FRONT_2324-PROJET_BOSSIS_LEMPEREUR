@@ -1,45 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/model/event';
+import { EventService } from '../event.service';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
 })
-export class EventListComponent {
+export class EventListComponent implements OnInit{
 
-  events: Event[] = [new Event(
-    {
-      id: "1",
-      name: "Evenement test",
-      picture: "/assets/images/logo.svg",
-      price: 5,
-      date: "10/10/2024",
-      theme: "sport",
-      creator: "1"
-    }
-  ),
-  new Event(
-    {
-      id: "2",
-      name: "Evenement test 2",
-      picture: "/assets/images/logo.svg",
-      price: 5,
-      date: "10/10/2024",
-      theme: "sport",
-      creator: "1"
-    }
-  ),
-  new Event(
-    {
-      id: "3",
-      name: "Evenement test 3",
-      picture: "/assets/images/logo.svg",
-      price: 5,
-      date: "10/10/2024",
-      theme: "sport",
-      creator: "1"
-    }
-  )];
+  events: Event[] = [];
+  eventService: EventService
+
+  constructor(private eventServ: EventService){
+    this.eventService = eventServ
+  }
+
+  ngOnInit(): void {
+    this.eventService.getEvents().subscribe(eventList => {
+      if(eventList){
+        this.events = eventList.map(event => new Event(event))
+      }
+    })
+  }
+
+  updateList(data: any): void{
+    this.eventService.getEvents(data.filters, data.sort).subscribe(eventList => {
+      if(eventList){
+        this.events = eventList.map(event => new Event(event))
+      }
+    })
+  }
 
 }

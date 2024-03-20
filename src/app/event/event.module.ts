@@ -5,6 +5,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { EventRoutingModule } from './event-routing.module';
 import { EventAddComponent } from './event-add/event-add.component';
+import { EventFilterComponent } from './event-filter/event-filter.component';
 
 
 
@@ -12,7 +13,8 @@ import { EventAddComponent } from './event-add/event-add.component';
   declarations: [
     EventDetailComponent,
     EventListComponent,
-    EventAddComponent
+    EventAddComponent,
+    EventFilterComponent
   ],
   imports: [
     CommonModule,

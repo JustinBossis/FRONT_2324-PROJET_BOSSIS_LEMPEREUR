@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class EventAddComponent {
   newEvent: Event = new Event(
     {
-      id: '1',
+      _id: '1',
       name: '',
       picture: '',
       price: 0,

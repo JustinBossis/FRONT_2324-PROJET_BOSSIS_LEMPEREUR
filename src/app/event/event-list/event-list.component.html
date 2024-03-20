@@ -1,21 +1,26 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8 row row-cols-1 g-4">
+            <app-event-filter (filterUpdated)="updateList($event)"></app-event-filter>
             <div class="col" *ngFor="let event of events">
-            <div class="card h-100">
-                <div class="row g-0">
-                  <div class="col-md-4">
-                <img src="{{event.picture}}" class="cimg-fluid rounded-start">
-                </div>
-                <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{event.name}}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a [routerLink]="['/event', ''+event.id]" class="btn btn-primary">Go somewhere</a>
+                <div class="card h-100">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{event.picture}}" class="img-fluid rounded-start">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{event.name}} <span
+                                        class="badge rounded-pill text-bg-secondary">{{event.price}} €</span></h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date}} - {{event.theme}}</h6>
+                                <div class="text-end">
+                                    <a [routerLink]="['/event', ''+event._id]" class="btn btn-primary">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div></div>
         </div>
     </div>
-</div></div>
+</div>
