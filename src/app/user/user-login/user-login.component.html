@@ -47,7 +47,7 @@
                         <div class="form-outline col-md-6 mb-2">
                             <label class="form-label">Date de naissance</label>
                             <input type="date" class="form-control" required="required" name="birthdate" (input)="dateVerify($event)"
-                                #birthdate="ngModel" [(ngModel)]="newUser.birthdate" />
+                                #birthdate="ngModel" [ngModel]="newUser.birth| date:'yyyy-MM-dd'" (ngModelChange)="newUser.birth = $event" />
                             <div *ngIf="birthdate.invalid && (birthdate.dirty || birthdate.touched) || !isDateValid"
                                 class="text-danger">
                                 <div *ngIf="birthdate.errors?.['required']">Date de naissance requise</div>
@@ -109,7 +109,7 @@
                     <div class="d-flex justify-content-center">
                         <button *ngIf="!isLogin" type="submit" [disabled]="registerForm.pristine || registerForm.invalid || !checkPasswordsMatch() || !isDateValid" type="submit"
                             class="btn btn-success">S'inscrire</button>
-                        <button *ngIf="isLogin" type="submit" [disabled]="!isLogin" type="submit"
+                        <button *ngIf="isLogin" type="submit" [disabled]="!isLogin || registerForm.invalid" type="submit"
                             class="btn btn-success">Se connecter</button>
                     </div>
 

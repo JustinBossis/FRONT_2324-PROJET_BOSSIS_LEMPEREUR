@@ -9,6 +9,7 @@ export class User implements IUser{
     admin: boolean;
     favorites: string[];
     birthdate: number;
+    birth: Date;
     picture: string;
 
     constructor(data: any){
@@ -20,6 +21,7 @@ export class User implements IUser{
         this.admin = data.admin;
         this.favorites = data.favorites;
         this.birthdate = data.birthdate;
+        this.birth = new Date(data.birthdate);
         this.picture = data.picture;
     }
 

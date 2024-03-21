@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-6 mb-3">
                                         <h6>Date de naissance</h6>
-                                        <p class="text-muted">{{ user.birthdate }}</p>
+                                        <p class="text-muted">{{ user.birth.toLocaleDateString("fr-FR") }}</p>
                                     </div>
                                 </div>
                                 <br>
@@ -57,7 +57,7 @@
                                                         <a [routerLink]="['/event', ''+event._id]" style="text-decoration: none; color: black;">
                                                         <div class="card-body">
                                                             <h5 class="card-title">{{event.name}} </h5>
-                                                            <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date.toLocaleString("fr-FR")}} - {{event.theme}}</h6>
+                                                            <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date.toLocaleDateString("fr-FR")}} - {{event.theme}}</h6>
                                                         
                                                         </div>
                                                     </a>

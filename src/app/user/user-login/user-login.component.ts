@@ -18,7 +18,8 @@ export class UserLoginComponent {
       email: '',
       admin: false,
       favorites: [],
-      birthdate: "",
+      date: new Date(),
+      birthdate: new Date("2000-01-01").getTime(),
       picture: "",
     }
   );
@@ -26,12 +27,11 @@ export class UserLoginComponent {
   checkPasswordValue: string = "";
   isLogin: boolean = true;
   userService: UserService;
-  isDateValid: boolean = false;
+  isDateValid: boolean = true;
 
 
   constructor(private router: Router, private userServ: UserService) {
-    this.userService = userServ
-    //this.isDateValid = this.newUser.birthdate < new Date();
+    this.userService = userServ;
   }
 
   changeIsLogin(): void {
