@@ -10,6 +10,7 @@ import { User } from 'src/model/user';
 })
 export class UserService {
 
+  //Attributs
   user: User | null = null
   
   avatars = [
@@ -21,8 +22,12 @@ export class UserService {
     '/assets/images/users/avatar_6.png',
   ]
 
+  //Constructeur
+  //Récupération du service nécessaire pour les requêtes http
   constructor(private http: HttpClient) { }
 
+  //Méthodes
+  //loginUser est appelé lors de la connexion d'un utilisateur et permet de connecter un utilisateur à partir de l'email et du mot de passe passés en paramètre
   loginUser(email: string, password: string): Observable<any | undefined>{
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,6 +35,7 @@ export class UserService {
     return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/connect', {email: email, password: password}, { headers: headers });
   }
 
+  //createUser est appelé lors de la création d'un utilisateur et permet de créer un utilisateur à partir des données passées en paramètre
   createUser(data: any, password: string): Observable<any | undefined>{
     delete data._id;
     data.password = password;
@@ -37,6 +43,7 @@ export class UserService {
     return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/', data);
   }
 
+  //getUser est appelé lors de la récupération d'un utilisateur et permet de récupérer l'utilisateur dont l'id est passé en paramètre
   getUser(id: String): Observable<IUser | undefined>{
     let auth_token = localStorage.getItem("token")
     const headers = new HttpHeaders({
@@ -46,6 +53,7 @@ export class UserService {
     return this.http.get<IUser>('https://back-2324-projet-bossis-lempereur.onrender.com/user/'+id, { headers: headers });
   }
 
+  //getAllUsers est appelé lors de la récupération de la liste des utilisateurs et permet de récupérer la liste des utilisateurs
   getAllUsers(): Observable<IUser[] | undefined>{
     let auth_token = localStorage.getItem("token")
     const headers = new HttpHeaders({
@@ -54,6 +62,7 @@ export class UserService {
     return this.http.get<IUser[]>('https://back-2324-projet-bossis-lempereur.onrender.com/user/', { headers: headers });
   }
 
+  //getFavoriteEvents est appelé lors de la récupération de la liste des events favoris d'un utilisateur et permet de récupérer la liste des events favoris de l'utilisateur connecté
   getFavoriteEvents(): Observable<IEvent[] | undefined>{
     let auth_token = localStorage.getItem("token")
     const headers = new HttpHeaders({
@@ -62,7 +71,7 @@ export class UserService {
     return this.http.get<IEvent[]>('https://back-2324-projet-bossis-lempereur.onrender.com/user/favorites', { headers: headers });
   }
 
-  
+  //refreshToken est appelé lors de la récupération d'un nouveau token et permet de récupérer un nouveau token à partir du refresh token stocké dans le localStorage
   refreshToken(): Observable<any | undefined>{
     let refresh_token = localStorage.getItem("refreshtoken")
     return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/refreshtoken', {refreshtoken: refresh_token});

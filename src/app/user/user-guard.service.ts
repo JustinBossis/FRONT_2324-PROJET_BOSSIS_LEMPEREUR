@@ -11,23 +11,28 @@ import { User } from 'src/model/user';
 })
 export class UserGuardService {
 
+  //Attributs
+  userService: UserService
+
+  //Constructeur
+  //Récupération du service nécessaire pour la gestion des utilisateurs et du router pour la navigation
   constructor(private router: Router, private userServ: UserService) {
     this.userService = userServ;
   }
-  userService: UserService
 
-  handleError(err: any) {
-
-  }
-
+  //Méthodes
+  //canActivate est appelé lors de la navigation vers une page et permet de vérifier si l'utilisateur est connecté
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | UrlTree | boolean {
 
+    // Récupération du token dans le localStorage
     const token = localStorage.getItem("token")
     if (token) {
+      // Décodage du token
       const decoded_token: { [key: string]: string } = jwtDecode(token);
+      // Récupération de l'utilisateur
       return new Observable<boolean>((observer) => {
         this.userService.getUser(decoded_token['id']).pipe(
           catchError((error: HttpErrorResponse) => {
@@ -48,12 +53,14 @@ export class UserGuardService {
             return throwError(() => new Error('User not logged'));
           })
         ).subscribe((user) => {
+          // Stockage de l'utilisateur dans le service
           this.userService.user = new User(user)
           observer.next(true);
           observer.complete();
         });
       });
     } else {
+      // Redirection vers la page de connexion
       this.router.navigate(["user", "login"]);
       return false;
     }

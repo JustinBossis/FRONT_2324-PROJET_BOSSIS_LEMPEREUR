@@ -9,16 +9,20 @@ import { IUser } from 'src/model/iUser';
 })
 export class ChatResolverService {
 
+  //Attributs
+  userService: UserService;
+
+  //Constructeur
   constructor(private userServ: UserService){
     this.userService = userServ;
   }
 
-  userService: UserService
-
+  //Méthodes
+  //resolve permet de récupérer la liste de tous les utilisateurs
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
     ): Observable<IUser[] | undefined> {
-      return this.userService.getAllUsers()
+      return this.userService.getAllUsers();
     }
 }

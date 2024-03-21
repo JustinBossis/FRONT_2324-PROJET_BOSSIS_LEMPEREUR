@@ -11,25 +11,33 @@ import { IMessage } from 'src/model/iMessage';
 })
 export class ChatService {
 
+  //Attributs
   private socket;
 
+  //Constructeur
   constructor(private http: HttpClient) {
-    let auth_token = localStorage.getItem("token")
+    //Récupération du token de l'utilisateur
+    let auth_token = localStorage.getItem("token");
+    //Création de la socket
     this.socket = io('https://back-2324-projet-bossis-lempereur.onrender.com', {
       extraHeaders: {
         authorization: `bearer ${auth_token}`
       }
-    })
+    });
    }
 
+   //Méthodes
+   //connectToRoom est appelé lors de la connexion à une room et permet de se connecter à la room dont l'id est passé en paramètre
   connectToRoom(id: string){
     this.socket.emit("joinRoom", {"conversation": id});
   }
 
+  //leaveRoom est appelé lors de la déconnexion d'une room et permet de se déconnecter de la room
   leaveRoom(){
     this.socket.emit("leaveRoom", null);
   }
 
+  //sendMessage est appelé lors de l'envoi d'un message et permet d'envoyer un message à la room dont l'id est passé en paramètre
   sendMessage(user: User, text: string, conv_id: string){
     this.socket.emit("message", {
       conversation: conv_id,
@@ -39,6 +47,7 @@ export class ChatService {
     })
   }
 
+  //getMessages est appelé lors de la réception d'un message et permet de récupérer les messages de la room
   getMessages() {
     let observable = new Observable<IMessage>(observer => {
       this.socket.on('chat', (data) => {
@@ -49,7 +58,7 @@ export class ChatService {
     return observable;
   }
 
-  
+  //getChatByUserId est appelé lors de la récupération d'un chat et permet de récupérer le chat avec l'utilisateur dont l'id est passé en paramètre
   getChatByUserId(id: string): Observable<IChat[] | undefined>{
     let auth_token = localStorage.getItem("token")
     const headers = new HttpHeaders({

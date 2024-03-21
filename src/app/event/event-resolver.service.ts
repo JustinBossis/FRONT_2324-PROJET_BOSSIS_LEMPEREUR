@@ -9,12 +9,17 @@ import { EventService } from './event.service';
 })
 export class EventResolverService {
 
+  //Attributs
   eventService: EventService;
 
+  //Constructeur
+  //Récupération du service nécessaire pour la gestion des events
   constructor(private eventServ: EventService){
     this.eventService = eventServ;
   }
 
+  //Méthodes
+  //resolve est appelé lors de la navigation vers une page d'event et permet de récupérer l'event correspondant à l'id passé en paramètre
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

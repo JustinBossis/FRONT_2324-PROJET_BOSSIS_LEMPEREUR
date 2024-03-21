@@ -10,10 +10,15 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class UserResolverService {
 
+  //Attributs
+  decoded_token: { [key: string]: string }
+  userService: UserService
   
+  //Constructeur
+  //Récupération du service nécessaire pour la gestion des utilisateurs
   constructor(private userServ: UserService){
     this.userService = userServ;
-    
+    // Récupération du token dans le localStorage
     const token = localStorage.getItem("token")
     if(token){
       this.decoded_token = jwtDecode(token)
@@ -22,13 +27,13 @@ export class UserResolverService {
     }
   }
 
-  decoded_token: { [key: string]: string }
-  userService: UserService
-
+  //Méthodes
+  //resolve est appelé lors de la navigation vers une page d'utilisateur et permet de récupérer l'utilisateur correspondant à l'id passé en paramètre
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
     ): Observable<IUser | undefined> {
+      // Récupération de l'id de l'utilisateur
       const userId = this.decoded_token["id"]
       return this.userService.getUser(userId)
     }

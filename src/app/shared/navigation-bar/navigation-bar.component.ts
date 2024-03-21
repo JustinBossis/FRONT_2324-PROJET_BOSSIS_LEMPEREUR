@@ -11,13 +11,18 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class NavigationBarComponent {
 
+  //Attributs
   userService: UserService
 
+  //Constructeur
+  //Récupération du service nécessaire pour la gestion des utilisateurs et du router pour la navigation
   constructor(private router: Router, private userServ: UserService){
     this.userService = userServ;
 
   }
 
+  //Méthodes
+  //disconnectUser est appelé lors du clic sur le bouton "Déconnexion" et permet de déconnecter l'utilisateur
   disconnectUser(){
     localStorage.removeItem("token");
     localStorage.removeItem("refreshtoken");

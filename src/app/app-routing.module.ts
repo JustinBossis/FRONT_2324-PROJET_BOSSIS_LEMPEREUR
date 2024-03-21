@@ -12,6 +12,7 @@ import { ChatListComponent } from './chat/chat-list/chat-list.component';
 import { ChatResolverService } from './chat/chat-resolver.service';
 import { ChatDetailResolverService } from './chat/chat-detail-resolver.service';
 
+//Routes
 const routes: Routes = [
   { path: '', component: EventListComponent, canActivate: mapToCanActivate([UserGuardService]) },
   {path: 'event/create', component: EventAddComponent, canActivate: mapToCanActivate([UserGuardService])},
