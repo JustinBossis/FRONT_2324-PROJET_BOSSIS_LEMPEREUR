@@ -1,0 +1,39 @@
+<div class="container chat-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="conversation-header">
+          <div class="user-info" *ngIf="currentChat">
+            <img src="{{currentChat.picture}}" alt="Avatar" class="avatar">
+            <span>{{currentChat.displayName()}}</span>
+          </div>
+          <div class="user-info" *ngIf="!currentChat">
+            <span>Choisissez une conversation...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 d-none d-md-block">
+        <div class="conversation-list">
+          <div class="list-group" *ngIf="users">
+            <a *ngFor="let user of users;" class="list-group-item list-group-item-action" (click)="selectChat(user)">
+              <div class="user-info">
+                <img src="{{user.picture}}" alt="Avatar" class="avatar">
+                <span>{{user.displayName()}}</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8" *ngIf="currentChat && currentChatData && userService.user">
+        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'chat-box other-message': message.user == currentChat._id, 'chat-box self-message': message.user == userService.user._id}">{{message.text}}</div>
+        <!-- Form for user input -->
+        <form id="chat-form" (submit)="sendMessage()">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Entrez votre message..." aria-label="Entrez votre message..." aria-describedby="button-addon2" name="chat" #chat="ngModel" [(ngModel)]="chatInput">
+            <button class="btn btn-primary" type="submit" id="button-addon2">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

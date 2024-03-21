@@ -26,14 +26,14 @@ export class UserService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<any>('http://localhost:3000/auth/connect', {email: email, password: password}, { headers: headers });
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/connect', {email: email, password: password}, { headers: headers });
   }
 
   createUser(data: any, password: string): Observable<any | undefined>{
     delete data._id;
     data.password = password;
 
-    return this.http.post<any>('http://localhost:3000/auth/', data);
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/', data);
   }
 
   getUser(id: String): Observable<IUser | undefined>{
@@ -42,12 +42,20 @@ export class UserService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IUser>('http://localhost:3000/auth/'+id, { headers: headers });
+    return this.http.get<IUser>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/'+id, { headers: headers });
+  }
+
+  getAllUsers(): Observable<IUser[] | undefined>{
+    let auth_token = localStorage.getItem("token")
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${auth_token}`
+    });
+    return this.http.get<IUser[]>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/', { headers: headers });
   }
 
   
   refreshToken(): Observable<any | undefined>{
     let refresh_token = localStorage.getItem("refreshtoken")
-    return this.http.post<any>('http://localhost:3000/auth/refreshtoken', {refreshtoken: refresh_token});
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/auth/refreshtoken', {refreshtoken: refresh_token});
   }
 }

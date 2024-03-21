@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+  #wrap {
+    min-height: 100%;
+  }
+  
+  #main {
+    overflow:hidden;
+    padding-bottom:60px; /* this needs to be bigger than footer height*/
+  }
+  
+  footer {
+    position: relative;
+    margin-top: -60px; /* negative value of footer height */
+    height: 60px;
+    clear:both;
+  } 
