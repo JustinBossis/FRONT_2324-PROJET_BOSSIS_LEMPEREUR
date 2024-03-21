@@ -42,21 +42,26 @@ export class EventDetailComponent implements OnInit{
 
   addToFavorites(): void{
     if (this.event) {
-      this.eventService.addFavoriteEvent(this.event._id).subscribe();
-      this.inFavorite = true;
-      if(this.userService.user){
-        this.event.favorite_by.push(this.userService.user);
-      }
+      this.eventService.addFavoriteEvent(this.event._id).subscribe(() => {
+        this.inFavorite = true;
+        if(this.userService.user && this.event){
+          this.event.favorite_by.push(this.userService.user);
+        }
+    });
+      
     }
   }
 
   removeToFavorites(): void{
     if (this.event) {
-      this.eventService.removeFavoriteEvent(this.event._id).subscribe();
-      this.inFavorite = false;
-      if(this.userService.user){
-        //this.event.favorite_by = this.event.favorite_by.filter(utilisateur => utilisateur._id != this.userService.user._id);
-      }
+      this.eventService.removeFavoriteEvent(this.event._id).subscribe(() => {
+        this.inFavorite = false;
+        if(this.userService.user && this.event){
+          const userId = this.userService.user._id;
+          this.event.favorite_by = this.event.favorite_by.filter(utilisateur => utilisateur._id != userId);
+        }
+      });
+      
     }
   }
 

@@ -6,8 +6,7 @@
                     <div class="row g-0">
                         <div class="col-md-4 gradient-custom text-center text-black"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                            <img [src]="user.picture"
-                                alt="Avatar" class="img-fluid my-5" style="width: 150px;" />
+                            <img [src]="user.picture" alt="Avatar" class="img-fluid my-5" style="width: 150px;" />
                             <h5>{{ user.username }}</h5>
                             <p>{{ user.admin ? 'Administrateur' : 'Utilisateur' }}</p>
                         </div>
@@ -34,25 +33,49 @@
                                     </div>
                                 </div>
                                 <br>
+                                <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
                                     <div class="col-6 mb-3">
                                         <h6>Nombre de favoris : {{getFavoritesCount()}}</h6>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <button class="card border-1" style="background-color: #cfd6fa;" (click)="viewFavorites()">
+                                        <button class="card border-1" style="background-color: #cfd6fa;"
+                                            (click)="toggleVisibilityFavorites()">
                                             <div class="card-body p-0">
-                                                <h6 class="card-title">Consulter la liste de favoris</h6>
+                                                <h6 class="card-title">{{isVisibleFavorites?"Cacher la liste de favoris":"Consulter la liste de favoris"}}</h6>
                                             </div>
                                         </button>
+                                    </div>
+                                    <div *ngIf="isVisibleFavorites">
+                                        <div class="col" *ngFor="let event of favorites">
+                                            <div class="card h-100">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <img src="{{event.picture}}" class="img-fluid rounded-start">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <a [routerLink]="['/event', ''+event._id]" style="text-decoration: none; color: black;">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title">{{event.name}} </h5>
+                                                            <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date}} - {{event.theme}}</h6>
+                                                        
+                                                        </div>
+                                                    </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
                                 <h6>Évènements créés</h6>
                                 <hr class="mt-0 mb-4">
                                 <div class="row pt-1">
-                                <ul class="list-group">
-                                    <a *ngFor="let event of createdEvents" class="list-group-item list-group-item-action" [routerLink]="['/event', ''+event._id]">{{event.name}}</a>
-                                </ul>
+                                    <ul class="list-group">
+                                        <a *ngFor="let event of createdEvents"
+                                            class="list-group-item list-group-item-action"
+                                            [routerLink]="['/event', ''+event._id]">{{event.name}}</a>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

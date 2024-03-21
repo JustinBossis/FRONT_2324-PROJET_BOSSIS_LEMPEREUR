@@ -30,7 +30,7 @@
                 <hr class="mt-0 mb-4">
                     <h6>Utilisateurs ayant mis en favoris l'évènement :</h6>
                     <div class="list-group" *ngIf="event">
-                        <a href="#" class="list-group-item list-group-item-action" *ngFor="let user of event.favorite_by">{{user.displayName()}}</a>
+                        <a href="#" class="list-group-item list-group-item-action" *ngFor="let user of event.favorite_by">{{user.username}}</a>
                     </div>
                 </div>
         </div>
