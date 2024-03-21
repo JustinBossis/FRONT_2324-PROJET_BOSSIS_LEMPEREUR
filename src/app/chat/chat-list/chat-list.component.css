@@ -55,7 +55,6 @@ body {
     background-color: #0056b3;
   }
   .conversation-list {
-    height: calc(100vh - 100px); /* Ajuster la hauteur en fonction de votre interface */
     overflow-y: auto;
   }
   .list-group-item {
@@ -104,3 +103,8 @@ body {
     margin-top: -15px;
     width: max-content;
   }
+
+.chat-list{
+  overflow-y: scroll;
+  height: 60vh;
+}

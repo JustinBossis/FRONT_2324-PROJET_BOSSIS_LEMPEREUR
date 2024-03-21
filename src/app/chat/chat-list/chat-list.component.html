@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4 d-none d-md-block">
+      <div [ngClass]="[currentChat?'col-md-4 d-none d-md-block':'col-md-4']">
         <div class="conversation-list">
           <div class="list-group" *ngIf="users">
             <a *ngFor="let user of users;" class="list-group-item list-group-item-action" (click)="selectChat(user)">
@@ -26,9 +26,11 @@
         </div>
       </div>
       <div class="col-md-8" *ngIf="currentChat && currentChatData && userService.user">
-        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'other-message': message.user == currentChat._id, 'self-message': message.user == userService.user._id}">
-          <div class="message-time">{{message.date.toLocaleString("fr-FR")}}</div>
-          <div>{{message.text}}</div>
+        <div #chatList class="chat-list">
+          <div *ngFor="let message of currentChatData.messages" [ngClass]="{'other-message': message.user == currentChat._id, 'self-message': message.user == userService.user._id}">
+            <div class="message-time">{{message.date.toLocaleString("fr-FR")}}</div>
+            <div>{{message.text}}</div>
+          </div>
         </div>
         <!-- Form for user input -->
         <form id="chat-form" (submit)="sendMessage()">
