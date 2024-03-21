@@ -3,6 +3,7 @@ import { User } from 'src/model/user';
 import { ActivatedRoute } from '@angular/router';
 import { EventService } from 'src/app/event/event.service';
 import { Event } from 'src/model/event'
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -15,7 +16,7 @@ export class UserDetailComponent implements OnInit{
   favorites: Event[] | null = null
   isVisibleFavorites: boolean = false
 
-  constructor(private route: ActivatedRoute, private eventService: EventService){
+  constructor(private route: ActivatedRoute, private eventService: EventService, private userService: UserService){
     this.user = null
   }
 
@@ -26,6 +27,11 @@ export class UserDetailComponent implements OnInit{
       if(events){
         this.createdEvents = events.map(event => new Event(event));
         // TODO CHANGER LISTE FAVORITES
+      }
+    })
+    this.userService.getFavoriteEvents().subscribe(events => {
+      console.log(events)
+      if(events){
         this.favorites = events.map(event => new Event(event));
       }
     })

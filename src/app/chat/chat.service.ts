@@ -15,7 +15,7 @@ export class ChatService {
 
   constructor(private http: HttpClient) {
     let auth_token = localStorage.getItem("token")
-    this.socket = io('https://back-2324-projet-bossis-lempereur.onrender.com', {
+    this.socket = io('http://localhost:3000', {
       extraHeaders: {
         authorization: `bearer ${auth_token}`
       }
@@ -55,7 +55,7 @@ export class ChatService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IChat[]>(`https://back-2324-projet-bossis-lempereur.onrender.com/chat/${id}`, { headers: headers });
+    return this.http.get<IChat[]>(`http://localhost:3000/chat/${id}`, { headers: headers });
   }
 
 
