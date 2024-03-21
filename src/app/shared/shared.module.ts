@@ -5,13 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FooterComponent } from './footer/footer.component';
+import { ErrorComponent } from './error/error.component';
+import { ErrorInterceptor } from './error.interceptor';
 
 
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
   ],
   imports: [
     FormsModule,
@@ -23,7 +26,8 @@ import { FooterComponent } from './footer/footer.component';
     CommonModule,
     NavigationBarComponent,
     HttpClientModule,
-    FooterComponent
+    FooterComponent,
+    ErrorComponent
   ]
 })
 export class SharedModule { }
