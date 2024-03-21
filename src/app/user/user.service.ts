@@ -27,14 +27,14 @@ export class UserService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.post<any>('http://localhost:3000/user/connect', {email: email, password: password}, { headers: headers });
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/connect', {email: email, password: password}, { headers: headers });
   }
 
   createUser(data: any, password: string): Observable<any | undefined>{
     delete data._id;
     data.password = password;
 
-    return this.http.post<any>('http://localhost:3000/user/', data);
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/', data);
   }
 
   getUser(id: String): Observable<IUser | undefined>{
@@ -43,7 +43,7 @@ export class UserService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IUser>('http://localhost:3000/user/'+id, { headers: headers });
+    return this.http.get<IUser>('https://back-2324-projet-bossis-lempereur.onrender.com/user/'+id, { headers: headers });
   }
 
   getAllUsers(): Observable<IUser[] | undefined>{
@@ -51,7 +51,7 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IUser[]>('http://localhost:3000/user/', { headers: headers });
+    return this.http.get<IUser[]>('https://back-2324-projet-bossis-lempereur.onrender.com/user/', { headers: headers });
   }
 
   getFavoriteEvents(): Observable<IEvent[] | undefined>{
@@ -59,12 +59,12 @@ export class UserService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${auth_token}`
     });
-    return this.http.get<IEvent[]>('http://localhost:3000/user/favorites', { headers: headers });
+    return this.http.get<IEvent[]>('https://back-2324-projet-bossis-lempereur.onrender.com/user/favorites', { headers: headers });
   }
 
   
   refreshToken(): Observable<any | undefined>{
     let refresh_token = localStorage.getItem("refreshtoken")
-    return this.http.post<any>('http://localhost:3000/user/refreshtoken', {refreshtoken: refresh_token});
+    return this.http.post<any>('https://back-2324-projet-bossis-lempereur.onrender.com/user/refreshtoken', {refreshtoken: refresh_token});
   }
 }
