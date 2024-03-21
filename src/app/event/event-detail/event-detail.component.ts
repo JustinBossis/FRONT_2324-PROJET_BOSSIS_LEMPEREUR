@@ -65,9 +65,6 @@ export class EventDetailComponent implements OnInit{
     }
   }
 
-  modifyEvent(): void{
-    this.router.navigateByUrl("/event/modify", { state: { event: this.event } });
-  }
 
   clickUser(userId: string): void{
     if (this.userService.user && userId != this.userService.user._id) {

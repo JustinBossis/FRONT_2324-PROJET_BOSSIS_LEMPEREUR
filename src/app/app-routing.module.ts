@@ -15,7 +15,7 @@ import { ChatDetailResolverService } from './chat/chat-detail-resolver.service';
 const routes: Routes = [
   { path: '', component: EventListComponent, canActivate: mapToCanActivate([UserGuardService]) },
   {path: 'event/create', component: EventAddComponent, canActivate: mapToCanActivate([UserGuardService])},
-  {path: 'event/modify', component: EventAddComponent, canActivate: mapToCanActivate([UserGuardService])},
+  {path: 'event/:eventId/modify', component: EventAddComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {eventResolved: mapToResolve(EventResolverService)}},
   { path: 'event/:eventId', component: EventDetailComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {eventResolved: mapToResolve(EventResolverService)}},
   { path: 'user', component: UserDetailComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {userResolved: mapToResolve(UserResolverService)}},
   { path: 'user/login', component: UserLoginComponent },

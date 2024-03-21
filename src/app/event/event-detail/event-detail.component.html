@@ -11,8 +11,8 @@
                             aux favoris</button>
                         <button class="btn btn-secondary m-2" *ngIf="inFavorite" (click)="removeToFavorites()">Retirer
                             des favoris</button>
-                        <button class="btn btn-secondary m-2" (click)='modifyEvent()' *ngIf="isCreator">Modifier
-                            l'évènement</button>
+                        <a class="btn btn-secondary m-2" [routerLink]="['/event', ''+event._id, 'modify']" *ngIf="isCreator">Modifier
+                            l'évènement</a>
                     </div>
                     <hr class="mt-0 mb-4">
                     <div class="row">

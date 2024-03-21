@@ -24,8 +24,8 @@
       <div class="col-12">
         <select class="form-select" (change)="updateFilter()" name="sort" #sort="ngModel" [(ngModel)]="sortField">
           <option selected value="{}">Tri</option>
-          <option value='{"date":1}'>Date croissante</option>
-          <option value='{"date":-1}'>Date décroissante</option>
+          <option value='{"timestamp":1}'>Date croissante</option>
+          <option value='{"timestamp":-1}'>Date décroissante</option>
           <option value='{"price":1}'>Prix croissant</option>
           <option value='{"price":-1}'>Prix décroissant</option>
         </select>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/model/event';
 import { EventService } from '../event.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { timestamp } from 'rxjs';
 
 @Component({
@@ -27,13 +27,14 @@ export class EventAddComponent implements OnInit{
   isCreation: boolean = true;
   eventService: EventService;
 
-  constructor(private router: Router, eventService: EventService){
-    this.eventService = eventService;
+  constructor(private router: Router, private eventServ: EventService, private route: ActivatedRoute){
+    this.eventService = eventServ;
   }
 
   ngOnInit(): void {
-    if (history.state.event) {
-      this.newEvent = new Event(history.state.event);
+    const eventId = this.route.snapshot.params['eventId'];
+    if(eventId){
+      this.newEvent = new Event(this.route.snapshot.data["eventResolved"]);
       this.isCreation = false;
     }
   }
