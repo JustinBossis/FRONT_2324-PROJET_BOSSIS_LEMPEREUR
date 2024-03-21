@@ -7,7 +7,7 @@
             <span>{{currentChat.displayName()}}</span>
           </div>
           <div class="user-info" *ngIf="!currentChat">
-            <span>Choisissez une conversation...</span>
+            <span *ngIf="userService.user">Bonjour {{userService.user.displayName()}}, choisissez une conversation...</span>
           </div>
         </div>
       </div>
@@ -26,7 +26,10 @@
         </div>
       </div>
       <div class="col-md-8" *ngIf="currentChat && currentChatData && userService.user">
-        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'other-message': message.user == currentChat._id, 'self-message': message.user == userService.user._id}">{{message.text}}</div>
+        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'other-message': message.user == currentChat._id, 'self-message': message.user == userService.user._id}">
+          <div class="message-time">{{message.date.toLocaleString("fr-FR")}}</div>
+          <div>{{message.text}}</div>
+        </div>
         <!-- Form for user input -->
         <form id="chat-form" (submit)="sendMessage()">
           <div class="input-group mb-3">
