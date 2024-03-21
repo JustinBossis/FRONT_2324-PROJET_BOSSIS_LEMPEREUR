@@ -1,9 +1,10 @@
 <section class="vh-100" style="background-color: transparent;">
     <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="row d-flex justify-content-center align-items-center">
             <div class="col col-lg-6 mb-4 mb-lg-0">
-                <div *ngIf="user" class="card mb-3" style="border-radius: .5rem; background-color: #c0cbff;">
+                <div *ngIf="user" class="card mb-3" style="border-radius: .5rem; background-color: #f6f7ff;">
                     <div class="row g-0">
+                        <h2 class="text-center m-4">Profil</h2>
                         <div class="col-md-4 gradient-custom text-center text-black"
                             style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
                             <img [src]="user.picture" alt="Avatar" class="img-fluid my-5" style="width: 150px;" />
@@ -39,7 +40,7 @@
                                         <h6>Nombre de favoris : {{getFavoritesCount()}}</h6>
                                     </div>
                                     <div class="col-6 mb-3">
-                                        <button class="card border-1" style="background-color: #cfd6fa;"
+                                        <button class="card border-1" style="background-color: #e3e8ff;"
                                             (click)="toggleVisibilityFavorites()">
                                             <div class="card-body p-0">
                                                 <h6 class="card-title">{{isVisibleFavorites?"Cacher la liste de favoris":"Consulter la liste de favoris"}}</h6>
