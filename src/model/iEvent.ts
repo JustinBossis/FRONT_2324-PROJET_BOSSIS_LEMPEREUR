@@ -5,7 +5,7 @@ export interface IEvent  {
     name: string;
     picture: string;
     price: number;
-    date: string;
+    timestamp: number;
     theme: string;
     creator: string;
     favorite_by: IUser[] | null;

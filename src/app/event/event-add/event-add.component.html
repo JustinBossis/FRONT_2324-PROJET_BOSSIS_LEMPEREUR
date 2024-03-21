@@ -29,7 +29,7 @@
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Date</label>
                             <input required type="date" name="date" class="form-control" #date="ngModel"
-                                [(ngModel)]="newEvent.date" />
+                                [ngModel]="newEvent.date| date:'yyyy-MM-dd'" (ngModelChange)="newEvent.date = $event" />
                             <div *ngIf="date.invalid && (date.dirty || date.touched)"
                                 class="text-danger">
                                 <div *ngIf="date.errors?.['required']">Date requise</div>

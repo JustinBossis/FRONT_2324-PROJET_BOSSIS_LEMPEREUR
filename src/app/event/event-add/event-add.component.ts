@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from 'src/model/event';
 import { EventService } from '../event.service';
 import { Router } from '@angular/router';
+import { timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-event-add',
@@ -15,7 +16,8 @@ export class EventAddComponent implements OnInit{
       name: '',
       picture: '',
       price: 0,
-      date: '',
+      date: new Date(),
+      timestamp: Date.now(),
       theme: '',
       creator: '',
       favorite_by: []

@@ -6,7 +6,8 @@ export class Event implements IEvent{
     name: string;
     picture: string;
     price: number;
-    date: string;
+    date: Date;
+    timestamp: number;
     theme: string;
     creator: string;
     favorite_by: User[]
@@ -16,7 +17,8 @@ export class Event implements IEvent{
         this.name = data.name;
         this.picture = data.picture;
         this.price = data.price;
-        this.date = data.date;
+        this.timestamp = data.timestamp;
+        this.date = new Date(data.timestamp);
         this.theme = data.theme;
         this.creator = data.creator;
         this.favorite_by = data.favorite_by?data.favorite_by.map((user: any) => new User(user)):[];

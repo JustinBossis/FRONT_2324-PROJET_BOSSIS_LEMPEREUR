@@ -13,7 +13,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{event.name}} <span
                                         class="badge rounded-pill text-bg-secondary">{{event.price}} €</span></h5>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date}} - {{event.theme}}</h6>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{event.date.toLocaleDateString("fr-FR")}} - {{event.theme}}</h6>
                                 <div class="text-end">
                                     <a [routerLink]="['/event', ''+event._id]" class="btn btn-primary">En savoir plus</a>
                                 </div>
