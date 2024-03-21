@@ -54,7 +54,9 @@ export class ChatListComponent implements OnInit, OnDestroy{
   }
 
   selectChat(user: User): void{
-    this.router.navigate(["chat", user._id]);
+    this.router.navigateByUrl('/chat', { skipLocationChange: true }).then(() => {
+      this.router.navigate(["chat", user._id]);
+    });
   }
 
   sendMessage(){

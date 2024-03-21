@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'event/:eventId', component: EventDetailComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {eventResolved: mapToResolve(EventResolverService)}},
   { path: 'user', component: UserDetailComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {userResolved: mapToResolve(UserResolverService)}},
   { path: 'user/login', component: UserLoginComponent },
-  { path: 'chat/:userId', component: ChatListComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {chatResolved: mapToResolve(ChatResolverService), chatDetailResolved: mapToResolve(ChatDetailResolverService)}},
+  { path: 'chat/:userId', component: ChatListComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {chatResolved: mapToResolve(ChatResolverService), chatDetailResolved: mapToResolve(ChatDetailResolverService)}, runGuardsAndResolvers: 'always',},
   { path: 'chat', component: ChatListComponent, canActivate: mapToCanActivate([UserGuardService]),  resolve: {chatResolved: mapToResolve(ChatResolverService)}},
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

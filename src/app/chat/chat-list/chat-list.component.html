@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="col-md-8" *ngIf="currentChat && currentChatData && userService.user">
-        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'chat-box other-message': message.user == currentChat._id, 'chat-box self-message': message.user == userService.user._id}">{{message.text}}</div>
+        <div *ngFor="let message of currentChatData.messages" [ngClass]="{'other-message': message.user == currentChat._id, 'self-message': message.user == userService.user._id}">{{message.text}}</div>
         <!-- Form for user input -->
         <form id="chat-form" (submit)="sendMessage()">
           <div class="input-group mb-3">
