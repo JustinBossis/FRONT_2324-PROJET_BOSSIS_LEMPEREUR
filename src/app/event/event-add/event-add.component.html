@@ -50,6 +50,16 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-outline mb-2">
+                            <label class="form-label">Image : </label>
+                            <label *ngFor="let item of eventService.theme_pictures; let i = index" >
+                                <input required type="radio" name="picture" [ngClass]="['form-control', item==newEvent.picture?'':'disabledImage']" [value]="item" style="display: none;"
+                                #picture="ngModel" [(ngModel)]="newEvent.picture" (change)="changeImageURL($event, i)">
+                                <img [src]="item" [style.width.px]="80" [ngClass]="['mx-1', 'formImageChoice', item==newEvent.picture?'':'disabledImage']">
+                            </label>
+                        </div>
+                    </div>
 
                     <div class="d-flex justify-content-center">
                         <button [disabled]="eventForm.invalid || !isDateValid" type="submit"

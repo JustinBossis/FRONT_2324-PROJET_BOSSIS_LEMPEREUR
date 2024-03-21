@@ -9,20 +9,18 @@ import { IEvent } from 'src/model/iEvent';
 export class EventService {
 
   theme = ['Sport', 'Culture', 'Festif', 'Pro', 'Autres'];
-  theme_pictures: any = {
-    'Sport': "/assets/images/events/sport.jpg",
-    'Culture': "/assets/images/events/culture.jpg",
-    'Festif': "/assets/images/events/festif.jpg",
-    'Pro': "/assets/images/events/pro.jpg",
-    'Autres': "/assets/images/events/autres.jpg",
-  }
+  theme_pictures: any = [
+    "/assets/images/events/sport.jpg",
+    "/assets/images/events/culture.jpg",
+    "/assets/images/events/festif.jpg",
+    "/assets/images/events/pro.jpg",
+    "/assets/images/events/autres.jpg",
+  ]
 
   constructor(private http: HttpClient) { }
 
   createEvent(data: any): Observable<any | undefined>{
-    let auth_token = localStorage.getItem("token")
-
-    data.picture = this.theme_pictures[data.theme];
+    let auth_token = localStorage.getItem("token");
     delete data._id;
     delete data.favorite_by;
 
@@ -79,7 +77,6 @@ export class EventService {
   updateEvent(idEvent:string, data: any): Observable<any | undefined>{
     let auth_token = localStorage.getItem("token")
 
-    data.picture = this.theme_pictures[data.theme];
     delete data._id;
     delete data.favorite_by;
 

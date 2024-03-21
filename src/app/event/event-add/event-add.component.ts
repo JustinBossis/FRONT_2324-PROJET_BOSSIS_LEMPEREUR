@@ -69,4 +69,20 @@ export class EventAddComponent implements OnInit{
     this.isDateValid = (selectedDate >= currentDate);
   }
 
+  
+  changeImageURL(event: any, nb: number) {
+    let images = document.getElementsByClassName("formImageChoice")
+    for(let i = 0; i < images.length; i++){
+      if(i == nb){
+        if(images[i].classList.contains("disabledImage")){
+          images[i].classList.remove("disabledImage");
+        }
+      }else{
+        if(!images[i].classList.contains("disabledImage")){
+          images[i].classList.add("disabledImage");
+        }
+      }
+    }
+  }
+
 }
