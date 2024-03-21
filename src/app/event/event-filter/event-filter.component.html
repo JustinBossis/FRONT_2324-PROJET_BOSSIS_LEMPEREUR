@@ -9,7 +9,7 @@
       </div>
       <div class="col-12">
         <div class="input-group">
-          <input type="number" class="form-control" placeholder="Prix" (input)="updateFilter()" name="price"
+          <input type="number" inputmode="numeric" pattern="\d*" class="form-control" placeholder="Prix" (input)="updateFilter()" name="price"
             #price="ngModel" [(ngModel)]="priceField">
         </div>
       </div>

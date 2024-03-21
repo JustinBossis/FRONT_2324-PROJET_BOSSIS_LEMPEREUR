@@ -38,7 +38,6 @@ export class UserLoginComponent {
   onSubmit(form: any) {
     if (this.isLogin) {
       this.userService.loginUser(this.newUser.email, this.passwordValue).subscribe(tokens => {
-        this.passwordValue = ""
         if (tokens) {
           localStorage.setItem("token", tokens.token);
           localStorage.setItem("refreshtoken", tokens.refreshToken);
