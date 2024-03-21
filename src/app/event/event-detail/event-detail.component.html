@@ -29,8 +29,8 @@
 
                 <hr class="mt-0 mb-4">
                     <h6>Utilisateurs ayant mis en favoris l'évènement :</h6>
-                    <div class="list-group" *ngIf="event">
-                        <a href="#" class="list-group-item list-group-item-action" *ngFor="let user of event.favorite_by">{{user.username}}</a>
+                    <div class="list-group" *ngIf="event && userService.user">
+                        <div [ngClass]="{'list-group-item': true, 'list-group-item-action': user._id !== userService.user._id}" *ngFor="let user of event.favorite_by" (click)="user._id !== userService.user._id ? clickUser(user._id) : null">{{user.username}}</div>
                     </div>
                 </div>
         </div>
