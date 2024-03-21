@@ -6,8 +6,14 @@
                 <form #eventForm="ngForm" (ngSubmit)="onSubmit(eventForm)">
                     <div class="form-outline mb-4">
                         <label class="form-label">Nom</label>
-                        <input required minlength="5" maxlength="25" type="text" class="form-control form-control-lg"
+                        <input required minlength="3" maxlength="25" type="text" class="form-control form-control-lg"
                             name="name" #name="ngModel" [(ngModel)]="newEvent.name" placeholder="Entrez le nom de l'événement" />
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                            class="text-danger">
+                            <div *ngIf="name.errors?.['required']">Nom requis</div>
+                            <div *ngIf="name.errors?.['minlength']">Le nom doit comporter au moins 3
+                                caractères</div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -24,6 +30,10 @@
                             <label class="form-label">Date</label>
                             <input required type="date" name="date" class="form-control" #date="ngModel"
                                 [(ngModel)]="newEvent.date" />
+                            <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                                class="text-danger">
+                                <div *ngIf="date.errors?.['required']">Date requise</div>
+                            </div>
                         </div>
                     </div>
 
@@ -32,6 +42,10 @@
                             <label class="form-label">Prix (€)</label>
                             <input required type="number" min="0" class="form-control" name="price" #price="ngModel"
                                 (input)="priceVerify($event, 2)" [(ngModel)]="newEvent.price" />
+                            <div *ngIf="price.invalid && (price.dirty || price.touched)"
+                                class="text-danger">
+                                <div *ngIf="price.errors?.['required']">Prix requis</div>
+                            </div>
                         </div>
                     </div>
 
