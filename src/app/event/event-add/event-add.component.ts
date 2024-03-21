@@ -26,6 +26,7 @@ export class EventAddComponent implements OnInit{
 
   isCreation: boolean = true;
   eventService: EventService;
+  isDateValid: boolean = true;
 
   constructor(private router: Router, private eventServ: EventService, private route: ActivatedRoute){
     this.eventService = eventServ;
@@ -36,6 +37,7 @@ export class EventAddComponent implements OnInit{
     if(eventId){
       this.newEvent = new Event(this.route.snapshot.data["eventResolved"]);
       this.isCreation = false;
+      this.isDateValid = this.newEvent.date >= new Date(new Date().setDate(new Date().getDate() - 1));
     }
   }
 
@@ -58,4 +60,13 @@ export class EventAddComponent implements OnInit{
       event.target.value = value.slice(0, -(decimalesActuelles.length - decimales));
     }
   }
+
+  dateVerify(event: any) {
+    const inputDate = event.target as HTMLInputElement;
+    const selectedDate = new Date(inputDate.value);
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 1);
+    this.isDateValid = (selectedDate >= currentDate);
+  }
+
 }

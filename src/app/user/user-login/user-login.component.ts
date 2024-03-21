@@ -22,13 +22,16 @@ export class UserLoginComponent {
       picture: "",
     }
   );
-  passwordValue: string = ""
-  checkPasswordValue: string = ""
+  passwordValue: string = "";
+  checkPasswordValue: string = "";
   isLogin: boolean = true;
-  userService: UserService
+  userService: UserService;
+  isDateValid: boolean = false;
+
 
   constructor(private router: Router, private userServ: UserService) {
     this.userService = userServ
+    //this.isDateValid = this.newUser.birthdate < new Date();
   }
 
   changeIsLogin(): void {
@@ -69,5 +72,12 @@ export class UserLoginComponent {
         }
       }
     }
+  }
+
+  dateVerify(event: any) {
+    const inputDate = event.target as HTMLInputElement;
+    const selectedDate = new Date(inputDate.value);
+    let currentDate = new Date();
+    this.isDateValid = (selectedDate <= currentDate);
   }
 }

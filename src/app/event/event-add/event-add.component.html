@@ -28,11 +28,12 @@
 
                         <div class="form-outline col-md-6 mb-4">
                             <label class="form-label">Date</label>
-                            <input required type="date" name="date" class="form-control" #date="ngModel"
+                            <input required type="date" name="date" class="form-control" (input)="dateVerify($event)" #date="ngModel"
                                 [ngModel]="newEvent.date| date:'yyyy-MM-dd'" (ngModelChange)="newEvent.date = $event" />
-                            <div *ngIf="date.invalid && (date.dirty || date.touched)"
+                            <div *ngIf="date.invalid && (date.dirty || date.touched) || !isDateValid"
                                 class="text-danger">
                                 <div *ngIf="date.errors?.['required']">Date requise</div>
+                                <div *ngIf="!isDateValid">Date invalide</div>
                             </div>
                         </div>
                     </div>
@@ -44,13 +45,14 @@
                                 (input)="priceVerify($event, 2)" [(ngModel)]="newEvent.price" />
                             <div *ngIf="price.invalid && (price.dirty || price.touched)"
                                 class="text-danger">
-                                <div *ngIf="price.errors?.['required']">Prix requis</div>
+                                <div *ngIf="price.errors?.['required']">Prix incorrect</div>
+                                <div *ngIf="newEvent.price < 0">Le prix ne peut pas être inférieur à zéro</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="d-flex justify-content-center">
-                        <button [disabled]="eventForm.invalid" type="submit"
+                        <button [disabled]="eventForm.invalid || !isDateValid" type="submit"
                             class="btn btn-success">{{ isCreation ? 'Créer' : 'Modifier' }}</button>
                     </div>
                 </form>
